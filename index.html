@@ -89,7 +89,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">HG-SCRUBS</h1>
+          <h1 class="title is-1 publication-title">HG-SCRUB : Human Gaussian Single Camera Relighting with Unified Blending</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="">Junsuk (John) Kim</a><sup>1</sup>,</span>
@@ -103,56 +103,7 @@
           </div>
 
           <div class="column has-text-centered">
-            <!-- <div class="publication-links"> -->
-              <!-- PDF Link. -->
-              <!-- <span class="link-block">
-                <a href=""
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href=""
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span> -->
-              <!-- Video Link. -->
-              <!-- <span class="link-block">
-                <a href=""
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span> -->
-              <!-- Code Link.
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span> -->
-              <!-- Dataset Link. -->
-              <!-- <span class="link-block">
-                <a href=""
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a>
-            </div> -->
+          
 
           </div>
         </div>
@@ -173,7 +124,7 @@
         <h2 class="title is-3">Problem summary</h2>
         <div class="content has-text-justified">
           <p>
-            Briefly summarize the problem you are dealing with and why it is important
+            The task addressed in this project is the realistic relighting and blending of human avatars captured from monocular video into novel target scenes. While recent advances in 3D Gaussian Splatting (3DGS) and NeRF have enabled high-fidelity visual reconstructions, these methods often fall short in producing physically consistent integration—especially under novel lighting conditions or when ensuring contact realism between avatars and scene surfaces. Most prior systems depend on multi-camera setups or lack unified handling of both relighting and blending. Thus, the goal is to develop a pipeline that achieves both relighting and seamless integration using only monocular input, lowering the barrier to entry for avatar-based AR/VR and content generation.
           </p>
           <p>
             aaaa
@@ -238,8 +189,21 @@
                   <h2 class="title is-4">-----------------------------------------------------------</h2>
                   <h2 class="title is-4">[Previous work]</h2>
                   <div class="content has-text-justified">
-                    You should summarize and reference the relevant previous work in this area which you are aware of or which you consulted. 
-      
+                    HUGS: Demonstrated the use of 3DGS for human reconstruction but lacked scene-aware relighting and alignment.
+                    <li></li>
+
+                    The Relightables: High-quality multi-camera relighting system, not scalable to general users.
+                    <li></li>
+                    PhysAvatar: Modeled physically plausible interactions but depended on detailed observations.
+                    <li></li>
+                    GS-IR: Provided a foundation for inverse rendering using 3D Gaussians (normals, albedo, roughness).
+                    <li></li>
+                    DiffusionLight: Enabled generation of environment maps via chrome ball images.
+                    <li></li>
+                    BiGS: Addressed relightable Gaussian primitives.
+                    <li></li>
+                    SuGaR: Focused on aligning Gaussian geometry to mesh surfaces—an inspiration for improving avatar placement.
+                    <li></li>
           </div></div></div></div></section>
         
       <section class="section">
@@ -380,7 +344,18 @@
                   <h2 class="title is-4">-----------------------------------------------------------</h2>
                   <h2 class="title is-4">[Description of work]</h2>
                   <div class="content has-text-justified">
-                    Describe the work you performed.
+                    Constructed a full pipeline accepting monocular video and a target scene image.
+<li></li>
+Reconstructed 3D human Gaussian splats in both canonical and posed space using LBS (Linear Blend Skinning).
+<li></li>
+Applied GS-IR and DiffusionLight to extract and learn environment lighting and material maps.
+<li></li>
+Extracted {Normal, Albedo, Roughness, Metallic} from both human and target scenes.
+<li></li>
+Performed early-stage relighting using both learned environment maps and external chromeball references.
+<li></li>
+Developed initial routines for unifying the human and scene Gaussians with matched geometry and materials.
+<li></li>
           </div></div></div></div></section>
 
 
@@ -397,7 +372,18 @@
                   <h2 class="title is-4">-----------------------------------------------------------</h2>
                   <h2 class="title is-4">[Results]</h2>
                   <div class="content has-text-justified">
-                    Describe exactly what was achieved, giving concrete information (e.g. by charts, pictures, video, etc.) about what has been done.
+                    Achieved relit human Gaussians that respond to target scene lighting.
+<li></li>
+Successfully decomposed both the human and scene into their physical components (N, A, R, M).
+<li></li>
+Performed visual relighting with DiffusionLight and GS-IR.
+<li></li>
+Preliminary blended renderings show promise but require refinement.
+<li></li>
+Conducted analysis of normal maps for both canonical and posed human reconstructions.
+<li></li>
+Achieved 3DGS training up to 15,000 iterations, showing convergence in both human and scene representations.
+<li></li>
           </div></div></div></div></section>
 
           <section class="section">
@@ -408,19 +394,61 @@
                   <h2 class="title is-4">-----------------------------------------------------------</h2>
                   <h2 class="title is-4">[Analysis of work]</h2>
                   <div class="content has-text-justified">
-                    Analyze the work done from the standpoint of how successful you were on the project.  You should include the following information:
+                    New Results
 
-                    <ul>
-                      <li>  New results – What have you accomplished that is new, if anything?  If you claim novel contributions, you should have thoroughly researched the previous work on the problem.
-                     </li>
-                      <li>       Meeting goals – How well did you meet the original goals you set out?  If you did not meet these goals, why not?
-                      </li>
-                      <li>  Future work – If you (or someone else) were to continue working in this area, what would be the next steps in both the short and long term? </li>
-
+                    Demonstrated a single-camera pipeline for scene-aware avatar relighting and early blending—previously only possible with multi-camera setups.
+                    
+                    Integrated GS-IR with 3D Gaussian Splatting for both human and environment representations.
+                    
+                    Used Diffusion-based light probes for real-time environment estimation—this cross-method integration is novel.
+                    
+                    Meeting Goals
+                    
+                    Partially met: Achieved strong relighting, but blending is still a WIP.
+                    
+                    Did not yet fully implement human-scene contact constraints (floating artifacts remain).
+                    
+                    Geometry-aware alignment needs improvement to match SMPL surfaces tightly with scene surfaces.
+                    
+                    
                   
           </div></div></div></div></section>
 
           <section class="section">
+
+
+            <section class="section">
+              <div class="container is-max-desktop">
+      
+                <div class="columns is-centered has-text-centered">
+                  <div class="column is-four-fifths">
+                    <h2 class="title is-4">-----------------------------------------------------------</h2>
+                    <h2 class="title is-4">[Future Work]</h2>
+                    <div class="content has-text-justified">
+                      Short-term
+
+                      Finalize unified blending of the human Gaussian with the scene Gaussian.
+                      
+                      Improve SMPL-guided contact fidelity to reduce float artifacts.
+                      
+                      Fine-tune material and lighting extraction with more stable inverse rendering techniques.
+                      
+                      Long-term
+                      
+                      Introduce temporal consistency constraints across video frames.
+                      
+                      Generalize pipeline to moving backgrounds or outdoor scenes.
+                      
+                      Explore real-time adaptation using lightweight models for AR applications.
+                      
+                    
+            </div></div></div></div></section>
+  
+            <section class="section">
+
+             
+
+
             <div class="container is-max-desktop">
     
         <!-- Re-rendering. -->
