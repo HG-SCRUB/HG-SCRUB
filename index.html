@@ -210,13 +210,16 @@
                   <h2 class="title is-4">Previous Work</h2>
                   <div class="content has-text-justified">
                     <ul class="custom-list">
-                      <li><strong>HUGS:</strong> Demonstrated the use of 3DGS for human reconstruction but lacked scene-aware relighting and alignment.</li>
-                      <li><strong>The Relightables:</strong> High-quality multi-camera relighting system, not scalable to general users.</li>
-                      <li><strong>PhysAvatar:</strong> Modeled physically plausible interactions but depended on detailed observations.</li>
+                      <li><strong>HUGS:</strong> Demonstrated the use of basic 3DGS for human reconstruction but lacked scene-aware relighting and alignment. Floating artifacts are prominent in the representation.</li>
+                      <li><strong>The Relightables:</strong> Requires high-quality multi-camera setup for learning human representation and then relighting, not scalable to general users.</li>
+                      <li><strong>PhysAvatar:</strong> Modeled physically plausible interactions but depended on detailed observations, uses a physics based simulator for the training. Also required extensive multi-camera setup based dataset.</li>
                       <li><strong>GS-IR:</strong> Provided a foundation for inverse rendering using 3D Gaussians (normals, albedo, roughness).</li>
                       <li><strong>DiffusionLight:</strong> Enabled generation of environment maps via chrome ball images.</li>
                       <li><strong>BiGS:</strong> Addressed relightable Gaussian primitives.</li>
-                      <li><strong>SuGaR:</strong> Focused on aligning Gaussian geometry to mesh surfaces—an inspiration for improving avatar placement.</li>
+                      <li><strong>SuGaR:</strong> Focused on aligning Gaussian geometry to mesh surfaces—an inspiration for improving avatar placement. This will work as the foundation work for achieving our extended goal of achieving human blending in the scene.</li>
+
+                      <p><li>Even though there are previous work that learns promising results in avatar creation for the human using NeRF, 3D Gaussian Splatting based representation, no other work focused on achieving relighting of the human avatar based on novel scene's lighting in a single camera monocular video setting. Our work address this niche problem of human avatar relighting and blending.</li>
+                      </p>
                     </ul>
                   </div>
                 </div>
