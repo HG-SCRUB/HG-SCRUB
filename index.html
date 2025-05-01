@@ -352,12 +352,12 @@
               <h2 class="title is-4">Results</h2>
               <div class="content has-text-justified">
                 <ul class="custom-list">
-                  <li>Achieved relit human Gaussians that respond to target scene lighting.</li>
-                  <li>Successfully decomposed both the human and scene into their physical components (N, A, R, M).</li>
-                  <li>Performed visual relighting with DiffusionLight and GS-IR.</li>
+                  <li>Achieved decomposition of the human and the scene in separate representation and learnt their material & physical component (Normals, Albedo, Roughness & Metallic).</li>
+                  <li>Successfully performed visual relighting with Diffusion-Light and the GS-IR.</li>
+                  <li>Introduced explicit normal training in the Human Gaussian Splats driven by Depth, inspired by the inverse-rendering concepts.</li>
+                  <li>Achieved relit human Gaussian that re-correct its lightning to match the target scene's lighting.</li>
                   <li>Preliminary blended renderings show promise but require refinement.</li>
-                  <li>Conducted analysis of normal maps for both canonical and posed human reconstructions.</li>
-                  <li>Achieved 3DGS training up to 15,000 iterations, showing convergence in both human and scene representations.</li>
+
                 </ul>
               </div>
             </div>
